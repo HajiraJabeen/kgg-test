@@ -6,10 +6,10 @@ Natural language question answering over Wikidata's public SPARQL endpoint.
 
 The `ask()` function parses a natural language question into an **intent** (`age` or `population`) and a **subject** (`Tom Cruise`, `London`, etc.), resolves the subject to a Wikidata QID via a local lookup table, and runs a minimal SPARQL query against the Wikidata endpoint.
 
-**Why a lookup table instead of label search?**  
+**Using a lookup table**  
 Wikidata's public endpoint times out on open-ended label joins (e.g. via `skos:altLabel`). Direct QID lookups (`wd:Q37079`) hit the primary index and respond in under a second. Disambiguation is a Python concern, not a SPARQL one.
 
-**Why compute age in Python, not SPARQL?**  
+**Computing age in Python**  
 Keeping the SPARQL trivial (just fetch the DOB) makes it faster and easier to test. Age arithmetic in Python is also more readable and handles edge cases (birthday not yet passed this year) clearly.
 
 ## Setup
